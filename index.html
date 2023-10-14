@@ -15,46 +15,45 @@
     <h1 class="text-center mb-4">Tic Tac Toe Game</h1>
 
     <div class="text-center mb-4">
-         <button class="btn btn-danger btn-lg" id="resetBtn" onclick="resetBtnFunct()">Reset</button>
+         <button class="btn btn-danger btn-lg" id="resetBtn">Reset</button>
     </div>
 
+    <div>Current player turn: <span id="lbl-currentTurn"></span></div>
     <div>
         <div class="row">
             <div id="1" class="col square border">
-                <button class="cell" onclick="myFunction1()">1</button>
+                <button id="btn-1" class="cell">-</button>
             </div>
             <div id="2" class="col square border">
-                <button class="cell" onclick="myFunction2()">2</button>
+                <button id="btn-2" class="cell">-</button>
             </div>
             <div id="3" class="col square border">
-                <button class="cell" onclick="myFunction3()">3</button>
+                <button id="btn-3" class="cell">-</button>
             </div>
         </div>
         <div class="row">
             <div id="4" class="col square border">
-                <button class="cell" onclick="myFunction4()">4</button>
+                <button id="btn-4" class="cell">-</button>
             </div>
             <div id="5" class="col square border">
-                <button class="cell" onclick="myFunction5()">5</button>
+                <button id="btn-5" class="cell">-</button>
             </div>
             <div id="6" class="col square border">
-                <button class="cell" onclick="myFunction6()">6</button>
+                <button id="btn-6" class="cell">-</button>
             </div>
         </div>
         <div class="row">
             <div id="7" class="col square border">
-                <button class="cell" onclick="myFunction7()">7</button>
+                <button id="btn-7" class="cell">-</button>
             </div>
             <div id="8" class="col square border">
-                <button class="cell" onclick="myFunction8()">8</button>
+                <button id="btn-8" class="cell">-</button>
             </div>
             <div id="9" class="col square border">
-                <button class="cell" onclick="myFunction9()">9</button>
+                <button id="btn-9"  class="cell">-</button>
             </div>
         </div>
     </div>
-
-
 
     <script src="index.js"></script>`
     <script src="node_modules/jquery/dist/jquery.js"></script>

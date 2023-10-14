@@ -3,5 +3,19 @@
     height: 100px;
     font-size: 36px;
     text-align: center;
-}
+    border: 2px solid #000; /* Add borders to create squares */
+    display: inline-flex; /* Allows for easy alignment of content */
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+  }
 
+
+/* Style for 'x' and 'o' */
+.square.x {
+    color: #FF5733; /* Color for 'x' */
+  }
+  
+  .square.o {
+    color: #337DFF; /* Color for 'o' */
+  }

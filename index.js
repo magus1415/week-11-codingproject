@@ -1,84 +1,73 @@
-let resetBtn = document.getElementById('resetBtn');
-
-class StartGame {
-    constructor() {
-        this.playerXTurn();
-
-    }
-
-    playerXTurn() {
-        let xButton = document.getElementById('1');
-        xButton.addEventListener('click', () => {
-            document.getElementById('1').innerHTML = 'X'
-        })       
-    }
-
-    resetGame() {
-        return this.function1();
-    }
-
+var currentTurn = 'x';
+// displays current players turn
+document.getElementById('lbl-currentTurn').innerHTML = currentTurn;
+// eventListener on Reset button to refresh page, targets resetButton function
+document.getElementById('resetBtn').addEventListener('click', resetButton);
+// loops through 9 clicks, targets handleUserClick function that will make sure a space wasn't already taken and if it hasn't runs the changeTurn function
+for (let i = 1; i <= 9; i++) {
+    document.getElementById(`btn-${i}`).addEventListener('click', handleUserClick);
 }
 
-
-
-class ResetGame {
-    constructor() { }
-
-    get restartGame() {
-        return this.function1();
-    }
-
-    function1() {
-        document.getElementById('resetBtn').addEventListener('click', () => {
-           location.reload();           
-        })
+function handleUserClick(event) {
+    let element = event.target;
+    if (element.innerHTML == '-') {
+        element.innerHTML = currentTurn;
+        console.log(currentTurn);
+        changeTurn();
+    } else {
+        alert('Choose another space');
     }
 }
 
+// this tells us which turn it's on
+function changeTurn() {
+    if (currentTurn == 'x') {
+        checkWinner();
+        currentTurn = 'o';
 
+    } else {
+        checkWinner();
+        currentTurn = 'x';
+    }
 
-// const playerX = new PlayerX();
-// const playerY = new PlayerY();
-const resetGame = new ResetGame();
-resetGame.restartGame;
-new StartGame;
+    document.getElementById('lbl-currentTurn').innerHTML = currentTurn;
+}
 
+function checkWinner() {
+    let btnValues = [];
+    for (let i = 1; i <= 9; i++) {
+        let btn = document.getElementById(`btn-${i}`).innerHTML;
+        btnValues.push(btn);
+    }
 
+    const winningCombinations = [
+        [0, 1, 2], // Top row
+        [3, 4, 5], // Middle row
+        [6, 7, 8], // Bottom row
+        [0, 3, 6], // Left column
+        [1, 4, 7], // Middle column
+        [2, 5, 8], // Right column
+        [0, 4, 8], // Diagonal top-left to bottom-right
+        [2, 4, 6]  // Diagonal top-right to bottom-left
+    ];
 
-// function myFunction1() {
-//     document.getElementById('1').innerHTML = 'X';
-// }
+    for (const combination of winningCombinations) {
+        const [a, b, c] = combination;
+        if (btnValues[a] === 'x' || btnValues[a] === 'o') {
+            if (btnValues[a] === btnValues[b] && btnValues[b] === btnValues[c]) {
+                alert(`${currentTurn} is the winner`);
+                return; // Exit the function if a winner is found
+            }
+        }
+    }
+    if (btnValues.every(value => value === 'x' || value === 'o')) {
+        alert("It's a tie!");
+    }
+}
 
-// function myFunction2() {
-//     document.getElementById('2').innerHTML = 'X';
-// }
-
-// function myFunction3() {
-//     document.getElementById('3').innerHTML = 'X';
-// }
-
-// function myFunction4() {
-//     document.getElementById('4').innerHTML = 'X';
-// }
-
-// function myFunction5() {
-//     document.getElementById('5').innerHTML = 'X';
-// }
-
-// function myFunction6() {
-//     document.getElementById('6').innerHTML = 'X';
-// }
-
-// function myFunction7() {
-//     document.getElementById('7').innerHTML = 'X';
-// }
-
-// function myFunction8() {
-//     document.getElementById('8').innerHTML = 'X';
-// }
-
-// function myFunction9() {
-//     document.getElementById('9').innerHTML = 'X';
-// }
+// refreshes page
+function resetButton() {
+    location.reload();
+}
 
 
