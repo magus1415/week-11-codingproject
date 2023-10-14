@@ -4,6 +4,9 @@ document.getElementById('lbl-currentTurn').innerHTML = currentTurn;
 // EventListener on Reset button to refresh page, targets resetButton function
 document.getElementById('resetBtn').addEventListener('click', resetButton);
 // Loops through 9 clicks, targets handleUserClick function that will make sure a space wasn't already taken and if it hasn't runs the changeTurn function
+let alertId = document.getElementById("alert-winner-id");
+let alertTieId = document.getElementById("alert-tie-id");
+
 for (let i = 1; i <= 9; i++) {
     document.getElementById(`btn-${i}`).addEventListener('click', handleUserClick);
 }
@@ -56,14 +59,24 @@ function checkWinner() {
         const [a, b, c] = combination;
         if (btnValues[a] === 'x' || btnValues[a] === 'o') {
             if (btnValues[a] === btnValues[b] && btnValues[b] === btnValues[c]) {
-                alert(`${currentTurn} is the winner`);
+                announceWinner(alertId);
                 return;
             }
         }
     }
     if (btnValues.every(value => value === 'x' || value === 'o')) {
-        alert("It's a tie!");
+        announceTie(alertId);
     }
+}
+
+function announceWinner(element) {
+    element.classList.add("alert", "alert-primary");
+    element.innerHTML = `${currentTurn} is the winner`
+}
+
+function announceTie(element) {
+    element.classList.add("alert", "alert-primary");
+    element.innerHTML = `It's a tie`;
 }
 
 // refreshes page
