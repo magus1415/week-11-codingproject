@@ -1,13 +1,14 @@
 var currentTurn = 'x';
-// displays current players turn
+// Displays current players turn
 document.getElementById('lbl-currentTurn').innerHTML = currentTurn;
-// eventListener on Reset button to refresh page, targets resetButton function
+// EventListener on Reset button to refresh page, targets resetButton function
 document.getElementById('resetBtn').addEventListener('click', resetButton);
-// loops through 9 clicks, targets handleUserClick function that will make sure a space wasn't already taken and if it hasn't runs the changeTurn function
+// Loops through 9 clicks, targets handleUserClick function that will make sure a space wasn't already taken and if it hasn't runs the changeTurn function
 for (let i = 1; i <= 9; i++) {
     document.getElementById(`btn-${i}`).addEventListener('click', handleUserClick);
 }
 
+// Grabbing button element and checking if it's '-', it is then allows the current turn to select that spot, otherwise alerts to choose another space
 function handleUserClick(event) {
     let element = event.target;
     if (element.innerHTML == '-') {
@@ -19,12 +20,11 @@ function handleUserClick(event) {
     }
 }
 
-// this tells us which turn it's on
+// Tells us which turn it's on and checks if there is a winner everytime the function is ran
 function changeTurn() {
     if (currentTurn == 'x') {
         checkWinner();
         currentTurn = 'o';
-
     } else {
         checkWinner();
         currentTurn = 'x';
@@ -33,6 +33,7 @@ function changeTurn() {
     document.getElementById('lbl-currentTurn').innerHTML = currentTurn;
 }
 
+// Iterates 9 times and puts the selected click to an array
 function checkWinner() {
     let btnValues = [];
     for (let i = 1; i <= 9; i++) {
@@ -56,7 +57,7 @@ function checkWinner() {
         if (btnValues[a] === 'x' || btnValues[a] === 'o') {
             if (btnValues[a] === btnValues[b] && btnValues[b] === btnValues[c]) {
                 alert(`${currentTurn} is the winner`);
-                return; // Exit the function if a winner is found
+                return;
             }
         }
     }
