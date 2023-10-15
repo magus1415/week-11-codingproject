@@ -10,12 +10,3 @@
     margin: 0;
   }
 
-
-/* Style for 'x' and 'o' */
-.square.x {
-    color: #FF5733; /* Color for 'x' */
-  }
-  
-  .square.o {
-    color: #337DFF; /* Color for 'o' */
-  }
